@@ -1,0 +1,5 @@
+#!/bin/bash
+
+source ./_config.sh
+export PATH="$PHP_BIN:$PATH"
+php artisan $1

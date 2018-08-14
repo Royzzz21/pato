@@ -1,0 +1,49 @@
+
+<script>
+	function form_action(){
+		var frm = document.cat_add;
+		if(frm.table_id.value==''){
+			alert('상품이름을 입력하세요');
+			return false;
+		}
+		//else if(frm.p_price.value==''){
+		//	alert('상품가격을 입력하세요');
+		//	return false;
+		//}
+		
+		else{
+			return true;
+		}
+		
+	}
+</script>
+<?
+
+// 수정
+if($_GET[mode]=='mod'){
+	$idx = $_GET[idx];
+	$result = $db->query("select * from cat where idx = '$idx'");
+	$row = mysql_fetch_array($result);
+
+}
+
+?>
+<form action='<?=$SERVER[PHP_SELF]?>' id='cat_add' name='cat_add' method='POST' onsubmit='return form_action();'>
+	<input type="hidden" id="a" name="a" value="add" />
+	<input type="hidden" id="idx" name="idx" value="<?=$idx;?>" />
+	<input type="hidden" id="mode" name="mode" value="<?=$_GET[mode]?>" />
+	<table>
+	<tr>
+		<td>카테고리 테이블 id</td>
+		<td><input type='text' id='table_id' name='table_id'  value='<?=$row[id]?>' /></td>
+	</tr>
+	<tr>
+		<td>카테고리 테이블 이름</td>
+		<td><input type='text' id='table_name' name='table_name' value='<?=$row[name]?>' /></td>
+	</tr>
+	
+	<tr>
+		<td colspan=2><input type='submit' value='등록'/></td>
+	</tr>
+</table>
+</form>

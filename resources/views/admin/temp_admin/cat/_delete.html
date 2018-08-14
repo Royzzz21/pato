@@ -1,0 +1,16 @@
+<?
+
+@abc();
+//include '../_config.php';
+
+//echo '왜지우려고?';
+//exit;
+$l=$_REQUEST[all_check];
+
+foreach($l as $v){
+	//$db->query("delete from cat where idx='$idx'");
+	cat_delete_table($v);
+}
+
+go2('index.php');
+?>
